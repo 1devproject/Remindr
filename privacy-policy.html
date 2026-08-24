@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Remindr</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  :root{
+    --bg:#0A0B0E;
+    --surface:#1E2126;
+    --border:#2A2D33;
+    --text:#F2F3F5;
+    --text-secondary:#9AA0AC;
+    --accent:#8B94EA;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    max-width:680px;
+    margin:0 auto;
+    padding:32px 24px 0;
+  }
+  header img{width:28px;height:28px;border-radius:7px;}
+  header a.home{
+    color:var(--text);
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+  }
+  main{
+    max-width:680px;
+    margin:0 auto;
+    padding:32px 24px 80px;
+  }
+  h1{font-size:28px;font-weight:700;margin:24px 0 4px;letter-spacing:-0.01em;}
+  .updated{color:var(--text-secondary);font-size:13px;margin:0 0 32px;}
+  h2{font-size:18px;font-weight:600;margin:36px 0 12px;padding-top:16px;border-top:1px solid var(--border);}
+  h2:first-of-type{border-top:none;padding-top:0;}
+  p, li{color:#C7CAD1;font-size:15px;}
+  a{color:var(--accent);}
+  ul{padding-left:20px;}
+  strong{color:var(--text);}
+  .back{
+    display:inline-block;
+    margin-top:40px;
+    color:var(--text-secondary);
+    text-decoration:none;
+    font-size:13px;
+  }
+  .back:hover{color:var(--text);}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="home" style="display:flex;align-items:center;gap:10px;">
+    <img src="assets/remindr-icon.png" alt="">
+    Remindr
+  </a>
+</header>
+
+<main>
+  <h1>Privacy Policy for Remindr</h1>
+  <p class="updated"><strong>Last updated:</strong> August 24, 2026 &nbsp;&middot;&nbsp; <strong>Developer:</strong> 1DevProject &nbsp;&middot;&nbsp; <strong>Contact:</strong> <a href="mailto:1devproject+remindr.support@gmail.com">1devproject+remindr.support@gmail.com</a> &nbsp;&middot;&nbsp; <strong>Package:</strong> com.onedevproject.remindr</p>
+
+  <h2>1. Privacy-First Commitment</h2>
+  <p>Remindr is built with a strict privacy-first architecture. All personal data created within the application—including tasks, to-dos, calendar schedules, alarms, timers, quick notes, world clocks, and currency converter preferences—is stored locally on your device in a private SQLite database. We do not sell, rent, monetize, or track your personal content.</p>
+
+  <h2>2. Google Drive Cloud Sync (Optional)</h2>
+  <p>When you choose to sign in with your Google account for cloud synchronization:</p>
+  <ul>
+    <li>Remindr requests only scoped access (https://www.googleapis.com/auth/drive.file and email).</li>
+    <li>Remindr creates and manages only a single spreadsheet named <strong>"Remindr Database Sync"</strong> inside your personal Google Drive account.</li>
+    <li>Remindr <strong>cannot</strong> view, access, edit, or delete any other files, folders, or spreadsheets in your Google Drive.</li>
+    <li>Your data is backed up directly between your device and your private Google Drive storage. It is never routed through or stored on any developer-hosted or third-party intermediary servers.</li>
+  </ul>
+
+  <h2>3. Advertising (Google AdMob)</h2>
+  <p>The free version of Remindr displays banner and native advertisements served by <strong>Google AdMob</strong>.</p>
+  <ul>
+    <li>Google AdMob may collect and process anonymous device identifiers, coarse network information, and diagnostic metrics to serve non-intrusive advertisements in compliance with Google's Privacy Policy.</li>
+    <li>Purchasing <strong>Remindr Pro</strong> permanently removes all advertisements and disables all ad SDK tracking.</li>
+  </ul>
+
+  <h2>4. In-App Purchases (Remindr Pro)</h2>
+  <p>Remindr offers a one-time in-app purchase (<strong>Remindr Pro</strong>) for $2.99 USD (or regional store equivalent).</p>
+  <ul>
+    <li>All transactions are processed securely through <strong>Google Play In-App Billing</strong>.</li>
+    <li>We never collect, transmit, access, or store your payment details, credit card numbers, or billing addresses.</li>
+  </ul>
+
+  <h2>5. Device Permissions Requested</h2>
+  <p>Remindr requests only the minimum permissions necessary to provide its core utility functions:</p>
+  <ul>
+    <li><strong>POST_NOTIFICATIONS</strong>: Delivers timely alerts for alarms, countdown timers, and scheduled tasks.</li>
+    <li><strong>USE_EXACT_ALARM &amp; SCHEDULE_EXACT_ALARM</strong>: Ensures alarms and reminder notifications trigger precisely at the scheduled time, even when the device is in battery-saving or Doze mode.</li>
+    <li><strong>USE_FULL_SCREEN_INTENT</strong>: Displays the high-priority full-screen alarm ringing screen when the device is locked.</li>
+    <li><strong>FOREGROUND_SERVICE &amp; FOREGROUND_SERVICE_MEDIA_PLAYBACK</strong>: Maintains continuous audio alarm ringtone playback until you explicitly snooze or dismiss the alarm.</li>
+    <li><strong>INTERNET</strong>: Used to fetch live currency conversion rates, serve AdMob advertisements in the free version, and sync backups to your Google Drive.</li>
+    <li><strong>com.android.vending.BILLING</strong>: Allows Google Play to process the Remindr Pro in-app purchase and purchase restorations.</li>
+  </ul>
+
+  <h2>6. Data Retention &amp; Deletion</h2>
+  <ul>
+    <li><strong>Local Data</strong>: Uninstalling Remindr from your device permanently removes all local SQLite database records.</li>
+    <li><strong>Cloud Backup Data</strong>: You retain full ownership of your backup spreadsheet in Google Drive. You can view, export, or permanently delete the "Remindr Database Sync" file directly from your Google Drive at any time.</li>
+    <li><strong>Account Disconnection</strong>: You can revoke Remindr's access to your Google Account at any time via <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Account Security Settings</a>.</li>
+  </ul>
+
+  <h2>7. Children's Privacy</h2>
+  <p>Remindr does not knowingly collect personal identifiable information from children under the age of 13.</p>
+
+  <h2>8. Changes to This Privacy Policy</h2>
+  <p>We may update this Privacy Policy periodically. Any revisions will be reflected with an updated "Last updated" date at the top of this document and within the Remindr mobile app settings.</p>
+
+  <h2>9. Contact Us</h2>
+  <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please contact:</p>
+  <ul>
+    <li><strong>Email:</strong> <a href="mailto:1devproject+remindr.support@gmail.com">1devproject+remindr.support@gmail.com</a></li>
+    <li><strong>Developer:</strong> 1DevProject</li>
+  </ul>
+
+  <a href="index.html" class="back">&larr; Back to Remindr</a>
+</main>
+
+</body>
+</html>
