@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Remindr — Alarms, Tasks & Calendar for Android</title>
-<meta name="description" content="Smart alarms, to-do tasks, calendar, quick notes & currency converter in one Android app.">
+<meta name="description" content="Alarms, timers, world clock, to-do tasks, calendar, notes, currency & calculator in one Android app.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,600&display=swap">
@@ -85,11 +85,80 @@
     font-size:17px;
     line-height:1.55;
     color:var(--text-secondary);
-    margin:0 0 40px;
+    margin:0 0 28px;
     max-width:420px;
   }
 
   .spacer{flex:1;}
+
+  /* stacked screenshot carousel */
+  .showcase{
+    width:100%;
+    max-width:420px;
+    margin-bottom:28px;
+  }
+  .carousel{
+    position:relative;
+    width:184px;
+    height:352px;
+    margin:0 auto;
+    touch-action:pan-y;
+  }
+  .deck{position:relative;width:100%;height:100%;}
+  .card{
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:var(--surface);
+    box-shadow:0 16px 34px rgba(0,0,0,0.45);
+    transition:transform 0.32s cubic-bezier(.2,.8,.2,1), opacity 0.32s ease;
+    cursor:grab;
+    user-select:none;
+  }
+  .card.dragging{transition:none;cursor:grabbing;}
+  .card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
+    display:block;
+    pointer-events:none;
+    -webkit-user-drag:none;
+  }
+  .carousel-nav{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    margin-top:16px;
+  }
+  .nav-btn{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:var(--surface);
+    border:1px solid var(--border);
+    color:var(--text-secondary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  .nav-btn:hover{color:var(--text);border-color:var(--accent);}
+  .nav-btn svg{width:15px;height:15px;}
+  .dots{display:flex;gap:6px;}
+  .dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--border);
+    cursor:pointer;
+    transition:background 0.15s ease, transform 0.15s ease;
+  }
+  .dot.active{background:var(--accent);transform:scale(1.3);}
 
   footer{
     display:flex;
@@ -138,7 +207,30 @@
   </span>
 
   <h1>Remindr<span style="color:var(--accent);">!</span></h1>
-  <p class="tagline">Smart alarms, to-do tasks, calendar, quick notes &amp; currency converter — all in one app.</p>
+  <p class="tagline">Alarms, timers, world clock, to-do tasks, calendar, notes, currency &amp; calculator — all in one app.</p>
+
+  <div class="showcase">
+    <div class="carousel" id="carousel">
+      <div class="deck" id="deck">
+        <div class="card"><img src="assets/screenshots/shot-dashboard.jpg" alt="Remindr dashboard with to-dos, upcoming events, alarm and quick note"></div>
+        <div class="card"><img src="assets/screenshots/shot-calendar.jpg" alt="Remindr calendar view"></div>
+        <div class="card"><img src="assets/screenshots/shot-alarm-setup.jpg" alt="Remindr set alarm screen"></div>
+        <div class="card"><img src="assets/screenshots/shot-timer.jpg" alt="Remindr timer screen"></div>
+        <div class="card"><img src="assets/screenshots/shot-worldclock.jpg" alt="Remindr world clock, add a city"></div>
+        <div class="card"><img src="assets/screenshots/shot-calculator.jpg" alt="Remindr calculator screen"></div>
+        <div class="card"><img src="assets/screenshots/shot-currency.jpg" alt="Remindr currency converter"></div>
+      </div>
+    </div>
+    <div class="carousel-nav">
+      <div class="nav-btn" id="prevBtn" role="button" aria-label="Previous screenshot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn" role="button" aria-label="Next screenshot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </div>
+    </div>
+  </div>
 
   <div class="spacer"></div>
 
@@ -160,6 +252,85 @@
     s.style.opacity = (Math.random() * 0.5 + 0.15).toFixed(2);
     field.appendChild(s);
   }
+
+  // --- stacked card carousel ---
+  const deck = document.getElementById('deck');
+  const cards = Array.from(deck.querySelectorAll('.card'));
+  const dotsWrap = document.getElementById('dots');
+  const n = cards.length;
+  let current = 0;
+  let dragging = false;
+  let startX = 0;
+  let deltaX = 0;
+
+  cards.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.addEventListener('click', () => { current = i; render(); });
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function render() {
+    cards.forEach((card, i) => {
+      let diff = i - current;
+      if (diff < 0) diff += n;
+      // diff: 0 = front, 1/2 = peeking behind, rest = hidden
+      const visible = diff <= 2;
+      card.style.zIndex = n - diff;
+      card.style.opacity = visible ? (1 - diff * 0.28).toString() : '0';
+      card.style.pointerEvents = diff === 0 ? 'auto' : 'none';
+      if (!dragging || diff !== 0) {
+        card.style.transform = `translateX(${diff * 9}px) translateY(${diff * -7}px) scale(${1 - diff * 0.05})`;
+      }
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function next() { current = (current + 1) % n; render(); }
+  function prev() { current = (current - 1 + n) % n; render(); }
+
+  document.getElementById('nextBtn').addEventListener('click', next);
+  document.getElementById('prevBtn').addEventListener('click', prev);
+
+  function frontCard() { return cards[current]; }
+
+  deck.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    startX = e.clientX;
+    deltaX = 0;
+    const fc = frontCard();
+    fc.classList.add('dragging');
+    deck.setPointerCapture(e.pointerId);
+  });
+
+  deck.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    deltaX = e.clientX - startX;
+    const fc = frontCard();
+    fc.style.transform = `translateX(${deltaX}px) rotate(${deltaX * 0.04}deg)`;
+  });
+
+  function endDrag() {
+    if (!dragging) return;
+    dragging = false;
+    const fc = frontCard();
+    fc.classList.remove('dragging');
+    if (deltaX > 45) {
+      prev();
+    } else if (deltaX < -45) {
+      next();
+    } else {
+      render();
+    }
+    deltaX = 0;
+  }
+
+  deck.addEventListener('pointerup', endDrag);
+  deck.addEventListener('pointercancel', endDrag);
+  deck.addEventListener('pointerleave', () => { if (dragging) endDrag(); });
+
+  render();
 </script>
 
 </body>

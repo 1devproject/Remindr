@@ -68,16 +68,16 @@
 <header>
   <a href="index.html" class="home" style="display:flex;align-items:center;gap:10px;">
     <img src="assets/remindr-icon.png" alt="">
-    Remindr
+    Remindr<span style="color:var(--accent);">!</span>
   </a>
 </header>
 
 <main>
   <h1>Privacy Policy for Remindr</h1>
-  <p class="updated"><strong>Last updated:</strong> August 24, 2026 &nbsp;&middot;&nbsp; <strong>Developer:</strong> 1DevProject &nbsp;&middot;&nbsp; <strong>Contact:</strong> <a href="mailto:1devproject+remindr.support@gmail.com">1devproject+remindr.support@gmail.com</a> &nbsp;&middot;&nbsp; <strong>Package:</strong> com.onedevproject.remindr</p>
+  <p class="updated"><strong>Last updated:</strong> August 25, 2026 &nbsp;&middot;&nbsp; <strong>Developer:</strong> 1DevProject &nbsp;&middot;&nbsp; <strong>Contact:</strong> <a href="mailto:1devproject+remindr.support@gmail.com">1devproject+remindr.support@gmail.com</a> &nbsp;&middot;&nbsp; <strong>Package:</strong> com.onedevproject.remindr</p>
 
   <h2>1. Privacy-First Commitment</h2>
-  <p>Remindr is built with a strict privacy-first architecture. All personal data created within the application—including tasks, to-dos, calendar schedules, alarms, timers, quick notes, world clocks, and currency converter preferences—is stored locally on your device in a private SQLite database. We do not sell, rent, monetize, or track your personal content.</p>
+  <p>Remindr is built with a strict privacy-first architecture. All personal data created within the application—including tasks, to-dos, calendar schedules, alarms, timers, quick notes, world clocks, alert settings (auto-silence, snooze intervals, and vibration preferences), and currency converter preferences—is stored locally on your device in a private SQLite database and encrypted app storage. We do not sell, rent, monetize, or track your personal content.</p>
 
   <h2>2. Google Drive Cloud Sync (Optional)</h2>
   <p>When you choose to sign in with your Google account for cloud synchronization:</p>
@@ -105,6 +105,7 @@
   <h2>5. Device Permissions Requested</h2>
   <p>Remindr requests only the minimum permissions necessary to provide its core utility functions:</p>
   <ul>
+    <li><strong>VIBRATE</strong>: Enables tactile haptic alert vibration when alarms or countdown timers ring, fully controllable via in-app alert settings.</li>
     <li><strong>POST_NOTIFICATIONS</strong>: Delivers timely alerts for alarms, countdown timers, and scheduled tasks.</li>
     <li><strong>USE_EXACT_ALARM &amp; SCHEDULE_EXACT_ALARM</strong>: Ensures alarms and reminder notifications trigger precisely at the scheduled time, even when the device is in battery-saving or Doze mode.</li>
     <li><strong>USE_FULL_SCREEN_INTENT</strong>: Displays the high-priority full-screen alarm ringing screen when the device is locked.</li>
