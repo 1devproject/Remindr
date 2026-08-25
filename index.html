@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Remindr — Alarms, Tasks & Calendar for Android</title>
+<title>Remindr! — Alarms, Tasks & Calendar for Android</title>
 <meta name="description" content="Alarms, timers, world clock, to-do tasks, calendar, notes, currency & calculator in one Android app.">
 <link rel="icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://api.fontshare.com">
@@ -206,7 +206,7 @@
     Android
   </span>
 
-  <h1>Remindr<span style="color:var(--accent);">!</span></h1>
+  <h1>Remindr<span class="bang">!</span></h1>
   <p class="tagline">Alarms, timers, world clock, to-do tasks, calendar, notes, currency &amp; calculator — all in one app.</p>
 
   <div class="showcase">
@@ -331,6 +331,19 @@
   deck.addEventListener('pointerleave', () => { if (dragging) endDrag(); });
 
   render();
+
+  (function(){
+    var colors = ['#e04b4b', '#4bbf6b', '#4b7fe0', '#d9a84b', '#a34be0', '#e04ba0'];
+    var bang = document.querySelector('.bang');
+    if(!bang) return;
+    var i = 0;
+    bang.style.color = colors[i];
+    setInterval(function(){
+      i = (i + 1) % colors.length;
+      bang.style.color = colors[i];
+    }, 15000);
+  })();
+  
 </script>
 
 </body>
