@@ -53,6 +53,7 @@
   a{color:var(--accent);}
   ul{padding-left:20px;}
   strong{color:var(--text);}
+  code{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:1px 6px;font-size:0.9em;}
   .back{
     display:inline-block;
     margin-top:40px;
@@ -74,13 +75,13 @@
 
 <main>
   <h1>Terms of Service for Remindr!</h1>
-  <p class="updated"><strong>Last updated:</strong> August 25, 2026 &nbsp;&middot;&nbsp; <strong>Developer:</strong> 1DevProject &nbsp;&middot;&nbsp; <strong>Contact:</strong> <a href="mailto:1devproject.oe+remindr.support@gmail.com">1devproject.oe+remindr.support@gmail.com</a></p>
+  <p class="updated"><strong>Last updated:</strong> September 1, 2026 &nbsp;&middot;&nbsp; <strong>Developer:</strong> 1DevProject &nbsp;&middot;&nbsp; <strong>Contact:</strong> <a href="mailto:1devproject.oe+remindr.support@gmail.com">1devproject.oe+remindr.support@gmail.com</a></p>
 
   <h2>1. Acceptance of Terms</h2>
   <p>By downloading, installing, accessing, or using the Remindr! mobile application ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree with these Terms, please do not download, install, or use the App.</p>
 
   <h2>2. License Grant &amp; Permitted Use</h2>
-  <p>1DevProject grants you a personal, non-exclusive, non-transferable, revocable license to use Remindr! on your Android device for personal, non-commercial productivity management in accordance with these Terms.</p>
+  <p>1DevProject grants you a personal, non-exclusive, non-transferable, revocable license to use Remindr! on your mobile device for personal, non-commercial productivity management in accordance with these Terms.</p>
   <p>You agree not to:</p>
   <ul>
     <li>Decompile, reverse engineer, disassemble, or attempt to derive the source code of the App.</li>
@@ -88,20 +89,21 @@
     <li>Modify, adapt, translate, or create derivative works based upon the App without prior written consent.</li>
   </ul>
 
-  <h2>3. In-App Purchases (Remindr! Pro)</h2>
+  <h2>3. In-App Purchases (Remindr Pro)</h2>
   <ul>
-    <li><strong>Product Type:</strong> Remindr! Pro is a non-consumable, one-time in-app purchase priced at $2.99 USD (or local currency equivalent).</li>
+    <li><strong>Product Type:</strong> Remindr Pro is a non-consumable, one-time in-app purchase priced at $2.99 USD (or local currency equivalent).</li>
     <li><strong>Benefits:</strong> Permanently unlocks an ad-free experience across all features.</li>
     <li><strong>Payment Processing:</strong> All purchases and billing transactions are handled exclusively by <strong>Google Play Billing</strong> and are subject to Google Play Terms of Service.</li>
-    <li><strong>Restore Purchases:</strong> You can restore your Remindr! Pro purchase on any compatible Android device logged into the same Google Play account.</li>
+    <li><strong>Restore Purchases:</strong> You can restore your Remindr Pro purchase on any compatible Android device logged into the same Google Play account.</li>
     <li><strong>Refund Policy:</strong> Refunds are subject to Google Play's official refund policies. If you require assistance, please consult Google Play Help or contact our support team.</li>
   </ul>
 
-  <h2>4. Google Drive Cloud Sync Feature</h2>
+  <h2>4. Data Backup &amp; Cloud Synchronization (Local &amp; Dropbox)</h2>
   <ul>
-    <li>Google Drive cloud synchronization is provided as an optional convenience tool.</li>
-    <li>Remindr! creates and synchronizes with a dedicated spreadsheet named "Remindr! Database Sync" inside your private Google Drive account.</li>
-    <li>You are responsible for preserving access to your Google account and not manually modifying or corrupting the sync sheet schema. 1DevProject is not liable for data inconsistencies caused by manual spreadsheet tampering.</li>
+    <li>Remindr! provides offline-first data storage with optional local and cloud backup mechanisms.</li>
+    <li><strong>Local Backup:</strong> You can export and auto-update a <code>remindr_db.bak</code> file on your device storage. You are solely responsible for retaining and storing your local files.</li>
+    <li><strong>Dropbox Cloud Sync:</strong> If you opt into Dropbox Cloud Sync, your backup is transmitted directly to your personal Dropbox account using official Dropbox APIs. 1DevProject does not host, manage, or access your Dropbox account or files.</li>
+    <li>1DevProject is not liable for data loss resulting from device hardware failure, unbacked data deletion, or third-party service interruptions.</li>
   </ul>
 
   <h2>5. Disclaimer of Warranties</h2>
@@ -118,7 +120,7 @@
   <ul>
     <li>The use or inability to use the App.</li>
     <li>Missed notifications, alarms, or events due to device sleep states, power failure, or system restrictions.</li>
-    <li>Any loss of data or Google Drive connectivity interruptions.</li>
+    <li>Any accidental loss of locally stored data or unbacked user files.</li>
   </ul>
 
   <h2>7. Changes to Terms</h2>

@@ -53,6 +53,7 @@
   a{color:var(--accent);}
   ul{padding-left:20px;}
   strong{color:var(--text);}
+  code{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:1px 6px;font-size:0.9em;}
   .back{
     display:inline-block;
     margin-top:40px;
@@ -74,29 +75,36 @@
 
 <main>
   <h1>Privacy Policy for Remindr!</h1>
-  <p class="updated"><strong>Last updated:</strong> August 25, 2026 &nbsp;&middot;&nbsp; <strong>Developer:</strong> 1DevProject &nbsp;&middot;&nbsp; <strong>Contact:</strong> <a href="mailto:1devproject.oe+remindr.support@gmail.com">1devproject.oe+remindr.support@gmail.com</a></p>
+  <p class="updated"><strong>Last updated:</strong> September 1, 2026 &nbsp;&middot;&nbsp; <strong>Developer:</strong> 1DevProject &nbsp;&middot;&nbsp; <strong>Contact:</strong> <a href="mailto:1devproject.oe+remindr.support@gmail.com">1devproject.oe+remindr.support@gmail.com</a></p>
 
   <h2>1. Privacy-First Commitment</h2>
-  <p>Remindr! is built with a strict privacy-first architecture. All personal data created within the application—including tasks, to-dos, calendar schedules, alarms, timers, quick notes, world clocks, alert settings (auto-silence, snooze intervals, and vibration preferences), and currency converter preferences—is stored locally on your device in a private SQLite database and encrypted app storage. We do not sell, rent, monetize, or track your personal content.</p>
+  <p>Remindr! is built with a strict privacy-first architecture. All personal data created within the application—including tasks, to-dos, calendar schedules, alarms, timers, quick notes, world clocks, alert settings (auto-silence, snooze intervals, and vibration preferences), and currency converter preferences—is stored locally on your device in a private SQLite database and secure app storage. We do not sell, rent, monetize, or track your personal content.</p>
 
-  <h2>2. Google Drive Cloud Sync (Optional)</h2>
-  <p>When you choose to sign in with your Google account for cloud synchronization:</p>
+  <h2>2. Data Backup &amp; Cloud Synchronization (Local &amp; Dropbox)</h2>
+  <p>Remindr! offers flexible, user-controlled backup options:</p>
   <ul>
-    <li>Remindr! requests only scoped access (https://www.googleapis.com/auth/drive.file and email).</li>
-    <li>Remindr! creates and manages only a single spreadsheet named <strong>"Remindr! Database Sync"</strong> inside your personal Google Drive account.</li>
-    <li>Remindr! <strong>cannot</strong> view, access, edit, or delete any other files, folders, or spreadsheets in your Google Drive.</li>
-    <li>Your data is backed up directly between your device and your private Google Drive storage. It is never routed through or stored on any developer-hosted or third-party intermediary servers.</li>
+    <li><strong>No Backup Mode:</strong> You can opt to keep all data exclusively on your physical device with automatic backup turned off.</li>
+    <li><strong>Local Auto-Backup (<code>remindr_db.bak</code>):</strong> When you export a local backup file, Remindr! automatically updates this file on your device storage in real-time as you make changes. You can move, share, or store this file on your personal storage media or cloud drives.</li>
+    <li><strong>Dropbox Cloud Sync:</strong> You can choose to connect your personal Dropbox account for automatic cloud backup.
+      <ul>
+        <li><strong>Private App Folder Scope:</strong> Remindr! connects strictly to its own dedicated app folder (<code>/Apps/Remindr Backup/</code>) via standard OAuth 2.0 PKCE authorization.</li>
+        <li><strong>Account Identification:</strong> Remindr! displays your Dropbox account email address locally on the Settings screen solely to show you which account is currently connected. Your email address is cached exclusively in your device's private app storage and is never collected, tracked, or transmitted to any developer-hosted servers.</li>
+        <li><strong>Zero Access to Personal Files:</strong> Remindr! cannot view, read, access, or modify any other files, folders, photos, or documents in your Dropbox account.</li>
+        <li><strong>Smart Synchronization:</strong> Changes automatically upload in the background when connected to the internet. When offline, changes are safely saved locally and automatically sync once connectivity is restored.</li>
+      </ul>
+    </li>
+    <li><strong>Zero Developer Servers:</strong> The app operates with zero developer-hosted servers; your data is stored solely on your device and your personal Dropbox account.</li>
   </ul>
 
   <h2>3. Advertising (Google AdMob)</h2>
   <p>The free version of Remindr! displays banner and native advertisements served by <strong>Google AdMob</strong>.</p>
   <ul>
     <li>Google AdMob may collect and process anonymous device identifiers, coarse network information, and diagnostic metrics to serve non-intrusive advertisements in compliance with Google's Privacy Policy.</li>
-    <li>Purchasing <strong>Remindr! Pro</strong> permanently removes all advertisements and disables all ad SDK tracking.</li>
+    <li>Purchasing <strong>Remindr Pro</strong> permanently removes all advertisements and disables all ad SDK tracking.</li>
   </ul>
 
-  <h2>4. In-App Purchases (Remindr! Pro)</h2>
-  <p>Remindr! offers a one-time in-app purchase (<strong>Remindr! Pro</strong>) for $2.99 USD (or regional store equivalent).</p>
+  <h2>4. In-App Purchases (Remindr Pro)</h2>
+  <p>Remindr! offers a one-time in-app purchase (<strong>Remindr Pro</strong>) for $2.99 USD (or regional store equivalent).</p>
   <ul>
     <li>All transactions are processed securely through <strong>Google Play In-App Billing</strong>.</li>
     <li>We never collect, transmit, access, or store your payment details, credit card numbers, or billing addresses.</li>
@@ -110,15 +118,14 @@
     <li><strong>USE_EXACT_ALARM &amp; SCHEDULE_EXACT_ALARM</strong>: Ensures alarms and reminder notifications trigger precisely at the scheduled time, even when the device is in battery-saving or Doze mode.</li>
     <li><strong>USE_FULL_SCREEN_INTENT</strong>: Displays the high-priority full-screen alarm ringing screen when the device is locked.</li>
     <li><strong>FOREGROUND_SERVICE &amp; FOREGROUND_SERVICE_MEDIA_PLAYBACK</strong>: Maintains continuous audio alarm ringtone playback until you explicitly snooze or dismiss the alarm.</li>
-    <li><strong>INTERNET</strong>: Used to fetch live currency conversion rates, serve AdMob advertisements in the free version, and sync backups to your Google Drive.</li>
-    <li><strong>com.android.vending.BILLING</strong>: Allows Google Play to process the Remindr! Pro in-app purchase and purchase restorations.</li>
+    <li><strong>INTERNET</strong>: Used solely to connect to Dropbox Cloud Sync (if enabled), fetch live currency conversion rates, and serve AdMob advertisements in the free version.</li>
+    <li><strong>com.android.vending.BILLING</strong>: Allows Google Play to process the Remindr Pro in-app purchase and purchase restorations.</li>
   </ul>
 
   <h2>6. Data Retention &amp; Deletion</h2>
   <ul>
-    <li><strong>Local Data</strong>: Uninstalling Remindr! from your device permanently removes all local SQLite database records.</li>
-    <li><strong>Cloud Backup Data</strong>: You retain full ownership of your backup spreadsheet in Google Drive. You can view, export, or permanently delete the "Remindr! Database Sync" file directly from your Google Drive at any time.</li>
-    <li><strong>Account Disconnection</strong>: You can revoke Remindr!'s access to your Google Account at any time via <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Account Security Settings</a>.</li>
+    <li><strong>Local Data</strong>: All your notes, tasks, alarms, events, and settings reside on your device. Uninstalling Remindr! from your device permanently removes all local SQLite database records.</li>
+    <li><strong>Cloud Backup Files</strong>: You can disconnect your Dropbox account or delete your <code>remindr_db.bak</code> file at any time directly through the app or your Dropbox storage.</li>
   </ul>
 
   <h2>7. Children's Privacy</h2>
